@@ -10,8 +10,8 @@ env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
   RUN_REGION: us-central1
   SERVICE_NAME: my-micronaut
-  GCE_INSTANCE: cos-stable-e2-standard # TODO: update to instance name
-  GCE_INSTANCE_ZONE: us-east1-d # TODO: update to instance zone
+  GCE_INSTANCE: instance-1 # TODO: update to instance name
+  GCE_INSTANCE_ZONE: us-central1-a # TODO: update to instance zone
 jobs:
   build:
     runs-on: ubuntu-latest
