@@ -10,7 +10,10 @@ env:
   PROJECT_ID: ${{ secrets.RUN_PROJECT }}
   RUN_REGION: us-central1
   SERVICE_NAME: my-micronaut
-jobs:
+  GCE_INSTANCE: cos-stable-e2-standard # TODO: update to instance name
+  GCE_INSTANCE_ZONE: us-east1-d # TODO: update to instance zone
+
+  jobs:
   build:
     runs-on: ubuntu-latest
     steps:
@@ -34,4 +37,8 @@ jobs:
           gcloud builds submit \
             --quiet \
             --tag "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA"
-      # Deploy image to Cloud Run
+      - name: Deploy image to Compute Engine Instance
+      run: |-
+        gcloud compute instances update-container "$GCE_INSTANCE" \
+          --zone "$GCE_INSTANCE_ZONE" \
+          --container-image "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA"
