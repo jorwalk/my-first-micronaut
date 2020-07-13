@@ -12,8 +12,7 @@ env:
   SERVICE_NAME: my-micronaut
   GCE_INSTANCE: cos-stable-e2-standard # TODO: update to instance name
   GCE_INSTANCE_ZONE: us-east1-d # TODO: update to instance zone
-
-  jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
